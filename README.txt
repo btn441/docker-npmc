@@ -1,4 +1,6 @@
-Docker-compose with nginx, php-fpm, mariadb, composer
----
+Docker-compose with nginx, php-fpm, mariadb, composer, phpmyadmin
 
-Edit file .env - APP_PATH_HOST
+В домашнем каталоге пользователя (cd ~/) создаём папку Docker,
+в ней создаём папку с названием проекта например example, клонируем в эту папку проект.
+
+Чтобы сборка видела проект на локальной машине нужно отредактировать переменную APP_PATH_HOST в файле .env
