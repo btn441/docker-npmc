@@ -37,3 +37,13 @@ services:
     command: composer install --ignore-platform-reqs
 #    Раскомментировать комманду чтобы контейнер на закрывался автоматически
 #    command: tail -F anything
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - database:db
+    ports:
+      - 8765:80
+    environment:
+      MYSQL_ROOT_PASSWORD: docker
+    depends_on:
+      - database
