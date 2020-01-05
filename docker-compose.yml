@@ -1,0 +1,39 @@
+version: '3'
+services:
+  php-fpm:
+    build:
+      context: php-fpm
+    volumes:
+      - ${APP_PATH_HOST}:/var/www
+    working_dir: ${APP_PATH_CONTAINER}
+  nginx:
+    build:
+      context: nginx
+    volumes:
+      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/sites/:/etc/nginx/sites-available
+      - ./nginx/conf.d/:/etc/nginx/conf.d
+    depends_on:
+      - php-fpm
+    ports:
+      - "80:80"
+      - "443:443"
+  database:
+    build:
+      context: database
+    volumes:
+      - ${DB_PATH_HOST}:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=docker
+    ports:
+      - "6080:3306"
+  composer:
+    build:
+      context: composer
+    volumes:
+      - ${APP_PATH_HOST}:/var/www
+    working_dir: ${APP_PATH_CONTAINER}
+    command: composer install
+#    Раскомментировать комманду чтобы контейнер на закрывался автоматически
+#    command: tail -F anything
