@@ -34,9 +34,9 @@ services:
     volumes:
       - ${APP_PATH_HOST}:/var/www
     working_dir: ${APP_PATH_CONTAINER}
-    command: composer install --ignore-platform-reqs
+#    command: composer install --ignore-platform-reqs
 #    Раскомментировать комманду чтобы контейнер на закрывался автоматически
-#    command: tail -F anything
+    command: tail -F anything
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     links:
