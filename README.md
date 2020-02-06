@@ -22,4 +22,21 @@
 * ```docker ps``` - посмореть активные контейнеры;
 * ```docker exec -tiu root {name_container} bash -l``` - зайти в контейнер (```{name_container}``` - название контейнера).
 
+## Composer
+Зависимости можно обновлять через контейнер __composer__. </br>
+Зайдите в контейнер ```docker exec -tiu root backends_composer_1 bash -l```, выберите проект ```ls && cd example``` и вводите команды связанные с __composer__.
+
+## PHP-FPM
+С проектом __PHP__ можно общаться через контейнер __php-fpm__. </br>
+Зайдите в контейнер ```docker exec -tiu root backends_php-fpm_1 bash -l```, выберите проект ```ls && cd example``` и вводите команды связанные с __php-fpm__.
+
+## Database
+БД у нас будет использоваться __MariaDB__.</br>
+Логи: __root__</br> 
+Пароль: __docker__
+
+## PHPMyAdmin
+Чтобы делать изменения напрямую в __MariaDB__, у нас есть __PHPMyAdmin__.</br>
+Ссылка http://localhost:8765
+
 Еще пишем...
