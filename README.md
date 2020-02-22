@@ -23,23 +23,21 @@
 * ```docker exec -tiu {user_name} {name_container} bash -l``` - зайти в контейнер (```{name_container}``` - название контейнера).
 
 ## Makefile (юзаем команды не входя в docker)
+Внимание! Если вы идете против README.md, посмотрите код Makefile. Нужно будет настроить под себя.</br>
 Вы можете использовать __Docker__ не выходя из проекта и прямо от туда использовать команды в терминале.</br>
-Для установки __Makefile__, пропишите следущее (Проекты уже должны быть в директории __~/Backends/__): 
-1. ```cd ~/Docker/docker-npmc/``` - перейдем в репозиторий с __Docker__ чтобы скопировать файл __Makefile__;
-2. ```for dest_dir in ~/Backends/*/; do rm "$dest_dir"/Makefile; done``` - ужалить существующие Makefile в проектах (полезно для обновления файла);
-3. ```for dest_dir in ~/Backends/*/; do cp Makefile "$dest_dir"; done``` - скопируем файл в проекты ;)
+Для установки __Makefile__, пропишите следущее: ```echo 'alias docker-make="make -f ~/Dockers/docker-npmc/Makefile"' >> ~/.bashrc```
 
 Команды выполнять в корне проекта и пишите вначале ```make ...```
 | Команда | Аргументы | Описание |
 |:-|:-|:-:|
-| make bash-php-fpm | - | Зайти в bash php-fpm |
-| make bash-composer | - | Зайти в bash composer |
-| make bash-nginx | - | Зайти в bash nginx |
-| make bash-phpmyadmin | - | Зайти в bash phpmyadmin |
-| make bash-database | - | Зайти в bash database |
-| make php-migrate | - | Применить миграцию |
-| make php-migrate-create var=test | var (название миграции) | Создать миграцию |
-| make composer-install | - | Установить зависимости |
+| make php | - | Зайти в bash php-fpm |
+| make composer | - | Зайти в bash composer |
+| make nginx | - | Зайти в bash nginx |
+| make phpmyadmin | - | Зайти в bash phpmyadmin |
+| make database | - | Зайти в bash database |
+| make migrate | - | Применить миграцию |
+| make migrate-create var=test | var (название миграции) | Создать миграцию |
+| make install | - | Установить зависимости |
 
 ## Доступ к контейнеру (работа с юзерами)
 Т.к. мы должны иметь контакт с проектом (создать миграцию или обновить зависимости), нам необходимо заходить в контейнера. Ниже таблица, частых кейсов по заходу в контейнер:
