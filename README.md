@@ -6,42 +6,65 @@
 * [PHP-FPM](https://www.php.net/manual/ru/install.fpm.php) - является альтернативной реализацией __PHP FastCGI__ с несколькими дополнительными возможностями обычно используемыми для высоконагруженных сайтов;
 * [NGINX](https://nginx.org/ru/) - веб-сервер и почтовый прокси-сервер, работающий на __Unix-подобных__ операционных системах.
 
-## Установка
-1. Создайте директорию для __Docker__ проектов (если еще не создавали) в домашнюю директорию ```mkdir ~/Dockers```;
-2. Зайдите в директорию ```cd ~/Dockers``` и клонируйте репозиторий ```git clone https://github.com/btn441/docker-npmc.git``` или через ssh ```git clone git@github.com:btn441/docker-npmc.git```;
-3. Создайте директорию ```mkdir ~/Backends``` где будут хранится проекты.
-4. Теперь давайте добавим в конец строчку ```127.0.0.1 example.test``` в файл ```sudo nano /etc/hosts```. Мы для себя откроет домен __example.test__;
-5. Отлично! Давайте теперь зайдем ```cd ~/docker-npmc/nginx/sites/``` и посмотрим файлы ```ls```. Мы видим __example.conf__. Для каждого проекта создаем и редактируем данные конфиги (копируем данный файл, переименовываем и редактируем);
-6. По идеи всё! Осталось почитать документацию ниже, о том как с этим всем работать __;)__
+## Репозиторий имеет
+* Свой Makefile
+* Готовая конфигурация (MariaDB, PHPMyAdmin, Composer, PHP-FPM и NGINX)
+* Конфигурация для нескольких проектов
+* Быстрый запуск контейнеров (из-за малого количества кода)
+* Документация как с этим работать
+
+## Установка (ОБЯЗАТЕЛЬНО)
+1. Создай директорию для __Docker__ проектов (если еще не создал) ```mkdir ~/Dockers```
+2. Зайдите в директорию и клонируйте репозиторий ```cd ~/Dockers && git clone https://github.com/btn441/docker-npmc.git```
+3. Создайте директорию для хранения проектов ```mkdir ~/Backends```
+4. Обязательно установить для своей системы __docker__ и __docker-compose__
+5. Добавь своего пользователя в группу __docker__
+6. Зайди и сбилди эту репу ```cd /Dockers/docker-npmc && docker-compose build```
+7. Установи Makefile ```echo 'alias docker-make="make -f ~/Dockers/docker-npmc/Makefile"' >> ~/.bashrc```
+
+## Как мы это всё используем? (с использованием Makefile)
+1. ```cd ~/Backends && git clone example.git``` - скачиваем проект
+2. ```docker-make new a=example``` - настраиваем файлы для __nginx__
+3. ```cd ~/Dockers/docker-npmc && docker-compose up``` - запускаем новом терминале __Docker__
+4. ```cd ~/Backends/example && docker-make install``` - устанавлеваем зависимости через __composer__
+5. ```docker-make migrate``` - применяем миграции
+6. Заходим в example.test (домен по дефолту .test)
 
 ## Docker
-Репозиторий предпологает, что у нас установленны ```docker``` и ```docker-compose```. </br>
-Чтобы не писать перед __Docker__ командами __sudo__, добавьте вашего пользователя в группу ```docker```. </br>
 Полезные комманды, для __Docker__:
 * ```docker-composer up``` - запустить __Docker__ (не в фоне);
 * ```docker ps``` - посмореть активные контейнеры;
+* ```docker-compose build``` - сбилдить;
 * ```docker exec -tiu {user_name} {name_container} bash -l``` - зайти в контейнер (```{name_container}``` - название контейнера).
 
 ## Makefile (юзаем команды не входя в docker)
 Внимание! Если вы идете против README.md, посмотрите код Makefile. Нужно будет настроить под себя.</br>
-Вы можете использовать __Docker__ не выходя из проекта и прямо от туда использовать команды в терминале.</br>
-Для установки __Makefile__, пропишите следущее: </br> 
-```echo 'alias docker-make="make -f ~/Dockers/docker-npmc/Makefile"' >> ~/.bashrc```
+Вы можете использовать __Docker__ не выходя из корня проекта и прямо от туда использовать команды в терминале.</br>
 
-Команды выполнять в корне проекта и пишите вначале ```make ...```
+Команды выполнять в корне проекта и пишите вначале ```docker-make ...```
 | Команда | Аргументы | Описание |
 |:-|:-|:-:|
-| make php | - | Зайти в bash php-fpm |
-| make composer | - | Зайти в bash composer |
-| make nginx | - | Зайти в bash nginx |
-| make phpmyadmin | - | Зайти в bash phpmyadmin |
-| make database | - | Зайти в bash database |
-| make migrate | - | Применить миграцию |
-| make migrate-create var=test | var (название миграции) | Создать миграцию |
-| make install | - | Установить зависимости |
+| docker-make php | - | Зайти в bash php-fpm |
+| docker-make composer | - | Зайти в bash composer |
+| docker-make nginx | - | Зайти в bash nginx |
+| docker-make phpmyadmin | - | Зайти в bash phpmyadmin |
+| docker-make database | - | Зайти в bash database |
+| docker-make migrate | - | Применить миграцию |
+| docker-make migrate-create a=test | a (название миграции) | Создать миграцию |
+| docker-make new a=test | a (название проекта) | Сгенерировать конфиг nginx и записать домен в /etc/hosts |
+| docker-make install | - | Установить зависимости |
+
+## Database
+БД у нас будет использоваться __MariaDB__.</br>
+Логи: __root__</br> 
+Пароль: __docker__
+
+## PHPMyAdmin
+Чтобы делать изменения напрямую в __MariaDB__, у нас есть __PHPMyAdmin__.</br>
+Ссылка http://localhost:8765
 
 ## Доступ к контейнеру (работа с юзерами)
-Т.к. мы должны иметь контакт с проектом (создать миграцию или обновить зависимости), нам необходимо заходить в контейнера. Ниже таблица, частых кейсов по заходу в контейнер:
+Ниже таблица, частых кейсов по заходу в контейнер:
 | Контейнер | Задача | Пользователь |
 |:-:|:--:|:-:|
 | composer | Обновить зависимости | user |
@@ -58,27 +81,20 @@
 | UID | ID юзера |
 | GID | ID группы |
 
-## NGINX
-Все новые домены для проектов не забывайте записывать в ```/etc/hosts```! Пример ```127.0.0.1 examlpe.test```. </br>
-Все наши домены должны оканчиваться на __.test__ (не обязательно).</br>
-Каждый новый проект клонируется в директорию ```cd ~/Backends/``` и добавляется новый конфиг в __NGINX__ ```cd ~/Docker/docker-npmc/nginx/sites/```. Ну и не забываем про ```/etc/hosts```.
+## Информация касается тех, кто не дружит с Makefile
 
-## Composer
+### NGINX
+Все новые домены для проектов записывать в ```/etc/hosts```! Пример ```127.0.0.1 examlpe.test```. </br>
+Все наши домены должны оканчиваться на __.test__ (не обязательно, но рекомендуется).</br>
+Добавляйте новый конфиг в __NGINX__ ```cd ~/Docker/docker-npmc/nginx/sites/```. В директории есть пример ```example.conf```.
+
+### Composer
 Зависимости можно обновлять через контейнер __composer__. </br>
 Зайдите в контейнер ```docker exec -tiu root backends_composer_1 bash -l```, выберите проект ```ls && cd example``` и вводите команды связанные с __composer__.
 
-## PHP-FPM
+### PHP-FPM
 С проектом __PHP__ можно общаться через контейнер __php-fpm__. </br>
 Зайдите в контейнер ```docker exec -tiu root backends_php-fpm_1 bash -l```, выберите проект ```ls && cd example``` и вводите команды связанные с __php-fpm__.
-
-## Database
-БД у нас будет использоваться __MariaDB__.</br>
-Логи: __root__</br> 
-Пароль: __docker__
-
-## PHPMyAdmin
-Чтобы делать изменения напрямую в __MariaDB__, у нас есть __PHPMyAdmin__.</br>
-Ссылка http://localhost:8765
 
 # Проблемы (просто следуйте рекомендациям ниже и всё будет хорошо)
 1. Если вы устанавливаете пакеты через __composer__ используйте флаг ```--ignore-platform-reqs```;
