@@ -25,7 +25,8 @@
 ## Makefile (юзаем команды не входя в docker)
 Внимание! Если вы идете против README.md, посмотрите код Makefile. Нужно будет настроить под себя.</br>
 Вы можете использовать __Docker__ не выходя из проекта и прямо от туда использовать команды в терминале.</br>
-Для установки __Makefile__, пропишите следущее: ```echo 'alias docker-make="make -f ~/Dockers/docker-npmc/Makefile"' >> ~/.bashrc```
+Для установки __Makefile__, пропишите следущее: </br> 
+```echo 'alias docker-make="make -f ~/Dockers/docker-npmc/Makefile"' >> ~/.bashrc```
 
 Команды выполнять в корне проекта и пишите вначале ```make ...```
 | Команда | Аргументы | Описание |

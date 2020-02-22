@@ -12,23 +12,23 @@ docker_user = user
 # Root пользователь
 docker_root = root
 
-# Родительская директория нашего Docker'а
-docker_parent_dir = dockers
+# Директория нашего Docker'а
+docker_dir = docker-npmc
 
 # Название контейнера phpmyadmin
-docker_phpmyadmin = ${docker_parent_dir}_phpmyadmin_1
+docker_phpmyadmin = ${docker_dir}_phpmyadmin_1
 
 # Название контейнера database
-docker_database = ${docker_parent_dir}_database_1
+docker_database = ${docker_dir}_database_1
 
 # Название контейнера nginx
-docker_nginx = ${docker_parent_dir}_nginx_1
+docker_nginx = ${docker_dir}_nginx_1
 
 # Название контейнера php-fpm
-docker_php_fpm = ${docker_parent_dir}_php-fpm_1
+docker_php_fpm = ${docker_dir}_php-fpm_1
 
 # Название контейнера composer
-docker_composer = ${docker_parent_dir}_composer_1
+docker_composer = ${docker_dir}_composer_1
 
 # Зайти в bash php-fpm
 php:
