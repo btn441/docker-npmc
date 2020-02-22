@@ -15,6 +15,9 @@ docker_root = root
 # Директория нашего Docker'а
 docker_dir = docker-npmc
 
+# Путь от $USER до докера
+docker_dir_path = ~/Dockers/${docker_dir}
+
 # Название контейнера phpmyadmin
 docker_phpmyadmin = ${docker_dir}_phpmyadmin_1
 
@@ -56,8 +59,12 @@ migrate:
 
 # Создать миграцию
 migrate-create: 
-	${docker_path} ${docker_user} ${docker_php_fpm} sh -c "cd $(shell basename $(CURDIR)) && php yii migrate/create ${var}" -l
+	${docker_path} ${docker_user} ${docker_php_fpm} sh -c "cd $(shell basename $(CURDIR)) && php yii migrate/create ${a}" -l
 
 # Установить зависимости
 install: 
 	${docker_path} ${docker_user} ${docker_composer} sh -c "cd $(shell basename $(CURDIR)) && composer install --ignore-platform-reqs" -l
+
+# Создать новый конфиг для nginx
+new:
+	bash ${docker_dir_path}/nginx/sites/generate.sh ${a} && echo "127.0.0.1 ${a}" | sudo tee -a /etc/hosts
