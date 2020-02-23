@@ -19,8 +19,8 @@
 3. Создайте директорию для хранения проектов ```mkdir ~/Backends```
 4. Обязательно установить для своей системы __docker__ и __docker-compose__
 5. Добавь своего пользователя в группу __docker__
-6. Зайди и сбилди эту репу ```cd /Dockers/docker-npmc && docker-compose build```
-7. Установи Makefile ```echo 'alias docker-make="make -f ~/Dockers/docker-npmc/Makefile"' >> ~/.bashrc```
+6. Зайди и сбилди эту репу ```cd ~/Dockers/docker-npmc && docker-compose build```
+7. Установи Makefile ```echo 'alias docker-make="make -f ~/Dockers/docker-npmc/Makefile"' >> ~/.bashrc && source ~/.bashrc```
 
 ## Как мы это всё используем? (с использованием Makefile)
 1. ```cd ~/Backends && git clone example.git``` - скачиваем проект
