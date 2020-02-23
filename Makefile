@@ -67,4 +67,4 @@ install:
 
 # Создать новый конфиг для nginx
 new:
-	bash ${docker_dir_path}/nginx/sites/generate.sh ${a} && echo "127.0.0.1 ${a}" | sudo tee -a /etc/hosts
+	bash ${docker_dir_path}/nginx/sites/generate.sh ${a} && echo "127.0.0.1 ${a}.test" | sudo tee -a /etc/hosts
