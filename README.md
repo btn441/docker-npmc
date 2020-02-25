@@ -24,6 +24,7 @@
 | Команда | Аргументы | Описание |
 |:-|:-|:-:|
 | docker-make up | - | Запустить Docker |
+| docker-make rm | - | Удалить все остановленные контейнера |
 | docker-make php | - | Зайти в bash php-fpm |
 | docker-make composer | - | Зайти в bash composer |
 | docker-make nginx | - | Зайти в bash nginx |
