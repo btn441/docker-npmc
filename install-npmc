@@ -141,7 +141,7 @@ function update {
         sudo mv $DIR_PATH/$DIR_DB_NAME $DIR_DB_PATH
         mv $DIR_PATH/sites $DIR_NGINX_SITES_PATH
 
-        if [ -f "$FILE" ]; then
+        if [ -s $FILE ]; then
             echo
             echo "Хотите заменить $MAKEFILE_NAME? (y|N)"
 
