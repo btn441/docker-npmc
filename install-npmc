@@ -66,10 +66,9 @@ function install {
         cd $GIT_REPOSITORY && docker-compose build
         sudo rm /bin/$GIT_REPOSITORY
         create_docker_make
-
         rm -rf $DIR_PATH/.git
         rm $DIR_PATH/.gitignore
-        rm $DIR_PATH/$INSTALLER_NAME
+        rm $DIR_PATH/install-npmc
     }
 
     if [ -d "$DIR_PATH" ]; then
@@ -109,6 +108,9 @@ function update {
         rm -rf $DIR_NGINX_SITES_PATH
         sudo mv /tmp/$GIT_REPOSITORY/$DIR_DB $DIR_DB_PATH
         mv /tmp/$GIT_REPOSITORY/sites $DIR_NGINX_SITES_PATH
+        rm -rf $DIR_PATH/.git
+        rm $DIR_PATH/.gitignore
+        rm $DIR_PATH/install-npmc
     }
 
     echo
