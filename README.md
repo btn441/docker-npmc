@@ -20,20 +20,18 @@
 Внимание! Если вы идете против README.md, посмотрите код Makefile. Нужно будет настроить под себя.</br>
 Вы можете использовать __Docker__ не выходя из корня проекта и прямо от туда использовать команды в терминале.</br>
 
-Команды выполнять в корне проекта и пишите вначале ```docker-make ...```
+Команды выполнять в корне проекта и пишите вначале ```docker-npmc ...```
 | Команда | Аргументы | Описание |
 |:-|:-|:-:|
-| docker-make up | - | Запустить Docker |
-| docker-make rm | - | Удалить все остановленные контейнера |
-| docker-make php | - | Зайти в bash php-fpm |
-| docker-make composer | - | Зайти в bash composer |
-| docker-make nginx | - | Зайти в bash nginx |
-| docker-make phpmyadmin | - | Зайти в bash phpmyadmin |
-| docker-make database | - | Зайти в bash database |
-| docker-make migrate | - | Применить миграцию (нужно быть в корне проекта) |
-| docker-make migrate-create a=test | a (название миграции) | Создать миграцию (нужно быть в корне проекта) |
-| docker-make new a=test | a (название проекта) | Сгенерировать конфиг nginx и записать домен в /etc/hosts |
-| docker-make install | - | Установить зависимости (нужно быть в корне проекта) |
+| docker-npmc php | - | Зайти в bash php-fpm |
+| docker-npmc composer | - | Зайти в bash composer |
+| docker-npmc nginx | - | Зайти в bash nginx |
+| docker-npmc phpmyadmin | - | Зайти в bash phpmyadmin |
+| docker-npmc database | - | Зайти в bash database |
+| docker-npmc migrate | - | Применить миграцию (нужно быть в корне проекта) |
+| docker-npmc migrate-create a=test | a (название миграции) | Создать миграцию (нужно быть в корне проекта) |
+| docker-npmc new a=test | a (название проекта) | Сгенерировать конфиг nginx и записать домен в /etc/hosts |
+| docker-npmc install | - | Установить зависимости (нужно быть в корне проекта) |
 
 ## Database
 БД у нас __MariaDB__.</br>

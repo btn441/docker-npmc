@@ -5,27 +5,16 @@ GIT_USER=btn441
 GIT_REPOSITORY=docker-npmc
 GIT_PATH=https://$GIT_HOST/$GIT_USER/$GIT_REPOSITORY.git
 
-MAKEFILE_NAME=Makefile
+DOCKERS=Docker
+PROJECTS=WebProjects
 
-INSTALLER_NAME=install-npmc
-
-FILE_DOCKER_MAKE_NAME=docker-make
-FILE_DOCKER_MAKE_PATH=/bin/$FILE_DOCKER_MAKE_NAME
-
-DIR_PATH=~/$GIT_REPOSITORY
-DIR_DOCKER_NAME=docker
-DIR_DOCKER_PATH=$DIR_PATH/$DIR_DOCKER_NAME
-DIR_PROJECTS_NAME=projects
-DIR_PROJECTS_PATH=$DIR_PATH/$DIR_PROJECTS_NAME
-DIR_DB_NAME=db_data
-DIR_DB_PATH=$DIR_DOCKER_PATH/$DIR_DB_NAME
-DIR_NGINX_SITES_PATH=$DIR_DOCKER_PATH/nginx/sites
+DIR_PATH=~/$DOCKERS/$GIT_REPOSITORY
+DIR_DB=db_data
+DIR_DB_PATH=$DIR_PATH/$DIR_DB
+DIR_NGINX_SITES_PATH=$DIR_PATH/nginx/sites
 
 # Главная
 function main {
-    echo
-    echo "Добро пожаловать в docker-npmc!"
-
     menu
 }
 
@@ -53,61 +42,40 @@ function menu {
     esac
 }
 
-# Выход из установочника
-function exit_bash {
-    echo
-    echo "Завершение.."
-
-    exit 0
-}
-
 # Установка исполняемого файла, для Makefile
 function create_docker_make {
-    echo "make -f $DIR_PATH/$MAKEFILE_NAME" | sudo tee -a $FILE_DOCKER_MAKE_PATH
+    echo "make -f $DIR_PATH/Makefile ${1} ${2}" | sudo tee -a /bin/$GIT_REPOSITORY
 
-    sudo chmod +x $FILE_DOCKER_MAKE_PATH
-}
-
-# Удаление исполняемого файла, для Makefile
-function delete_docker_make {
-    if [ -f "$FILE_DOCKER_MAKE_PATH" ]; then
-        echo
-        echo "Мы нашли $FILE_DOCKER_MAKE_PATH."
-        echo "Хотите ли удалить этот файл? (y|N)"
-
-        read item
-
-        case "$item" in
-            y|Y)
-                sudo rm $FILE_DOCKER_MAKE_PATH
-                ;;
-            *) 
-                echo "Хорошо. Мы не удалили $FILE_DOCKER_MAKE_PATH"
-                ;;
-        esac
-    fi
+    sudo chmod +x /bin/$GIT_REPOSITORY
 }
 
 # Установка репозитория
 function install {
     function job {
-        mkdir $DIR_PATH
-        mkdir $DIR_PROJECTS_PATH 
-        cd $DIR_PATH && git clone $GIT_PATH && mv $GIT_REPOSITORY $DIR_DOCKER_NAME
-        cd $DIR_DOCKER_NAME && docker-compose build
-        delete_docker_make        
+        if [ -d "~/$DOCKERS" ]
+        then
+            mkdir ~/$DOCKERS
+        fi
+
+        if [ -d "~/$PROJECTS" ]
+        then
+            mkdir ~/$PROJECTS
+        fi
+
+        cd ~/$DOCKERS && git clone $GIT_PATH
+        cd $GIT_REPOSITORY && docker-compose build
+        sudo rm /bin/$GIT_REPOSITORY
         create_docker_make
-        mv $DIR_DOCKER_PATH/$MAKEFILE_NAME $DIR_PATH/$MAKEFILE_NAME
-        rm -rf $DIR_DOCKER_PATH/.git
-        rm $DIR_DOCKER_PATH/.gitignore
-        rm $DIR_DOCKER_PATH/$INSTALLER_NAME
+
+        rm -rf $DIR_PATH/.git
+        rm $DIR_PATH/.gitignore
+        rm $DIR_PATH/$INSTALLER_NAME
     }
 
     if [ -d "$DIR_PATH" ]; then
         echo
         echo "Мы нашли директорию которую необходимо удалить!"
-        echo "Проекты также будут удалены!"
-        echo "Вы хотите удалить $DIR_PATH? (y|N)"
+        echo "Вы хотите удалить $DIR_PATH? (Y|n)"
 
         read item
 
@@ -117,10 +85,11 @@ function install {
                 job
                 ;;
             n|N)
-                exit_bash
+                exit 0
                 ;;
             *) 
-                exit_bash
+                rm -rf $DIR_PATH
+                job
                 ;;
         esac
     else
@@ -131,43 +100,19 @@ function install {
 # Обновление репозитория
 function update {
     function job {
-        sudo mv $DIR_DB_PATH $DIR_PATH/$DIR_DB_NAME
-        mv $DIR_NGINX_SITES_PATH $DIR_PATH/sites
-        rm -rf $DIR_DOCKER_PATH
-        cd $DIR_PATH && git clone $GIT_PATH && mv $GIT_REPOSITORY $DIR_DOCKER_NAME        
-        cd $DIR_DOCKER_NAME && docker-compose build
+        sudo mv $DIR_DB_PATH /tmp/$GIT_REPOSITORY/$DIR_DB
+        mv $DIR_NGINX_SITES_PATH /tmp/$GIT_REPOSITORY/sites
+        rm -rf $DIR_PATH
+        cd $DOCKERS && git clone $GIT_PATH
+        cd $DIR_PATH && docker-compose build
         sudo rm -rf $DIR_DB_PATH
         rm -rf $DIR_NGINX_SITES_PATH
-        sudo mv $DIR_PATH/$DIR_DB_NAME $DIR_DB_PATH
-        mv $DIR_PATH/sites $DIR_NGINX_SITES_PATH
-
-        if [ -s $FILE ]; then
-            echo
-            echo "Хотите заменить $MAKEFILE_NAME? (y|N)"
-
-            read item
-
-            case "$item" in
-                y|Y)
-                    rm $DIR_PATH/$MAKEFILE_NAME 
-                    mv $DIR_DOCKER_PATH/$MAKEFILE_NAME $DIR_PATH/$MAKEFILE_NAME
-                    ;;
-                n|N)
-                    exit_bash
-                    ;;
-                *) 
-                    exit_bash
-                    ;;
-            esac 
-        else    
-            mv $DIR_DOCKER_PATH/$MAKEFILE_NAME $DIR_PATH/$MAKEFILE_NAME
-        fi       
+        sudo mv /tmp/$GIT_REPOSITORY/$DIR_DB $DIR_DB_PATH
+        mv /tmp/$GIT_REPOSITORY/sites $DIR_NGINX_SITES_PATH
     }
 
     echo
-    echo "Будут удалены файлы связанные с Docker!"
-    echo "Ваши проекты сохранятся!"
-    echo "Вы точно хотите обновить? (y|N)"
+    echo "Вы точно хотите обновить $GIT_REPOSITORY? (Y|n)"
 
     read item
 
@@ -176,10 +121,10 @@ function update {
             job
             ;;
         n|N)
-            exit_bash
+            exit 0
             ;;
         *) 
-            exit_bash
+            job
             ;;
     esac    
 }
@@ -187,20 +132,12 @@ function update {
 # Удаление репозитория
 function delete {
     function job {
-        sudo rm $FILE_DOCKER_MAKE_PATH
-
-        if [ ! "$(ls -A $DIR_PROJECTS_PATH)" ]; then
-            rm -rf $DIR_PATH
-        else 
-            rm -rf $DIR_DOCKER_PATH
-            rm $DIR_PATH/$MAKEFILE_NAME 
-        fi
+        sudo rm /bin/$GIT_REPOSITORY
+        rm -rf $DIR_PATH
     }
     
     echo
-    echo "Будут удалены файлы связанные с Docker!"
-    echo "Но ваши проекты мы сохраним!"
-    echo "Вы точно хотите удалить? (y|N)"
+    echo "Вы точно хотите удалить $GIT_REPOSITORY? (Y|n)"
 
     read item
 
@@ -209,10 +146,10 @@ function delete {
             job
             ;;
         n|N)
-            exit_bash
+            exit 0
             ;;
         *) 
-            exit_bash
+            job
             ;;
     esac    
 }
