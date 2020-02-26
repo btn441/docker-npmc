@@ -99,10 +99,11 @@ function install {
 # Обновление репозитория
 function update {
     function job {
+        mkdir /tmp/$GIT_REPOSITORY
         sudo mv $DIR_DB_PATH /tmp/$GIT_REPOSITORY/$DIR_DB
         mv $DIR_NGINX_SITES_PATH /tmp/$GIT_REPOSITORY/sites
         rm -rf $DIR_PATH
-        cd $DOCKERS && git clone $GIT_PATH
+        cd ~/$DOCKERS && git clone $GIT_PATH
         cd $DIR_PATH && docker-compose build
         sudo rm -rf $DIR_DB_PATH
         rm -rf $DIR_NGINX_SITES_PATH
