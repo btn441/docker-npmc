@@ -52,12 +52,12 @@ function create_docker_make {
 # Установка репозитория
 function install {
     function job {
-        if [ -d "~/$DOCKERS" ]
+        if [ ! -d "~/$DOCKERS" ]
         then
             mkdir ~/$DOCKERS
         fi
 
-        if [ -d "~/$PROJECTS" ]
+        if [ ! -d "~/$PROJECTS" ]
         then
             mkdir ~/$PROJECTS
         fi
