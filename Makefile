@@ -1,7 +1,7 @@
 # Для подробной информации перейдите по ссылке https://habr.com/ru/post/211751/
 
 # Начало запроса к docker
-docker = docker-compose -f ~/docker-npmc/docker/docker-compose.yml
+docker = docker-compose -f ~/Docker/docker-npmc/docker-compose.yml
 
 # Пользователь
 docker_user = user
@@ -10,7 +10,7 @@ docker_user = user
 docker_root = root
 
 # Путь до докера
-docker_dir_path = ~/docker-npmc/docker
+docker_dir_path = ~/Docker/docker-npmc
 
 # Зайти в bash php-fpm
 php:
@@ -47,11 +47,3 @@ install:
 # Создать новый конфиг для nginx
 new:
 	bash ${docker_dir_path}/nginx/sites/generate.sh ${a} && echo "127.0.0.1 ${a}.test" | sudo tee -a /etc/hosts
-
-# Запустить Docker
-up:
-	cd ~/docker-npmc/docker && docker-compose up
-
-# Удалить все контейнера
-rm:
-	docker rm $(docker ps -a -q)
