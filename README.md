@@ -35,7 +35,6 @@
 | docker-npmc phpmyadmin | - | Зайти в bash phpmyadmin |
 | docker-npmc database | - | Зайти в bash database |
 | docker-npmc migrate | - | Применить миграцию (нужно быть в корне проекта) |
-| docker-npmc migrate-create a=test | a (название миграции) | Создать миграцию (нужно быть в корне проекта) |
 | docker-npmc new a=test | a (название проекта) | Сгенерировать конфиг nginx и записать домен в /etc/hosts |
 | docker-npmc install | - | Установить зависимости (нужно быть в корне проекта) |
 
