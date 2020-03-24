@@ -1,3 +1,5 @@
+![GitHub](https://img.shields.io/github/license/btn441/docker-npmc) ![GitHub repo size](https://img.shields.io/github/repo-size/btn441/docker-npmc) ![](https://img.shields.io/badge/docker--compose-v3.7-blueviolet) ![](https://img.shields.io/badge/php--fpm-v7.2--fpm-blueviolet) ![](https://img.shields.io/badge/nginx-v1.17.6-blueviolet) ![](https://img.shields.io/badge/mysql-v5.7-blueviolet) ![](https://img.shields.io/badge/phpmyadmin-lates-blueviolet)
+
 # docker-npmc (mysql)
 Ветка для твоего проекта с поддержкой mysql.
 
