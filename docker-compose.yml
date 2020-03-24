@@ -26,7 +26,7 @@ services:
     volumes:
       - ./db_data:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=seenus
+      - MYSQL_ROOT_PASSWORD=docker
     ports:
       - "6080:3306"
   phpmyadmin:
