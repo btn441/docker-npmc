@@ -44,7 +44,7 @@ function menu {
 
 # Установка исполняемого файла, для Makefile
 function create_docker_make {
-    echo "make -f $DIR_PATH/Makefile ${1} ${2}" | sudo tee -a /bin/$GIT_REPOSITORY
+    echo "make -f $DIR_PATH/Makefile ${1}" | sudo tee -a /bin/$GIT_REPOSITORY
 
     sudo chmod +x /bin/$GIT_REPOSITORY
 }

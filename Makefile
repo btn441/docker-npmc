@@ -35,12 +35,6 @@ phpmyadmin:
 # Сделать миграцию
 migrate:
 	${docker} exec -u ${docker_user} php-fpm sh -c "cd $(shell basename $(CURDIR)) && php yii migrate" -l
-
-# Создать миграцию
-migrate-create: 
-	${docker} exec -u ${docker_user} php-fpm sh -c "cd $(shell basename $(CURDIR)) && php yii migrate/create ${a}" -l
-
-# Установить зависимости
 install: 
 	${docker} exec -u ${docker_user} composer sh -c "cd $(shell basename $(CURDIR)) && composer install --ignore-platform-reqs" -l
 
