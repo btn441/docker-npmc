@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 services:
   php-fpm:
     build:
@@ -19,31 +19,21 @@ services:
     ports:
       - "80:80"
       - "443:443"
-  database:
+  db:
     build:
-      context: database
+      context: db
+    command: --default-authentication-plugin=mysql_native_password
     volumes:
       - ${DB_PATH_HOST}:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=docker
     ports:
       - "6080:3306"
-  composer:
-    build:
-      context: composer
-    volumes:
-      - ${APP_PATH_HOST}:/var/www
-    working_dir: ${APP_PATH_CONTAINER}
-#    command: composer install --ignore-platform-reqs
-#    Раскомментировать комманду чтобы контейнер на закрывался автоматически
-    command: tail -F anything
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     links:
-      - database:db
+      - db:db
     ports:
       - 8765:80
-    environment:
-      MYSQL_ROOT_PASSWORD: docker
     depends_on:
-      - database
+      - db

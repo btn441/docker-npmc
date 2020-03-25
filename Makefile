@@ -16,10 +16,6 @@ docker_dir_path = ~/Docker/docker-npmc
 php:
 	${docker} exec -u ${docker_user} php-fpm bash -l
 
-# Зайти в bash composer
-composer:
-	${docker} exec -u ${docker_user} composer bash -l
-
 # Зайти в bash database
 database:
 	${docker} exec -u ${docker_root} database bash -l
@@ -35,8 +31,10 @@ phpmyadmin:
 # Сделать миграцию
 migrate:
 	${docker} exec -u ${docker_user} php-fpm sh -c "cd $(shell basename $(CURDIR)) && php yii migrate" -l
+
+# Установить зависимости
 install: 
-	${docker} exec -u ${docker_user} composer sh -c "cd $(shell basename $(CURDIR)) && composer install --ignore-platform-reqs" -l
+	${docker} exec -u ${docker_user} php-fpm sh -c "cd $(shell basename $(CURDIR)) && composer install" -l
 
 # Создать новый конфиг для nginx
 new:
