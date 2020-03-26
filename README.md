@@ -1,5 +1,13 @@
-[![](https://img.shields.io/badge/rocketfirm-site-red)](https://rocketfirm.com) ![GitHub](https://img.shields.io/github/license/btn441/docker-npmc) ![GitHub repo size](https://img.shields.io/github/repo-size/btn441/docker-npmc) </br>
-![](https://img.shields.io/badge/docker--compose-v3.7-blueviolet) ![](https://img.shields.io/badge/php--fpm-v7.2--fpm-blueviolet) ![](https://img.shields.io/badge/nginx-v1.17.6-blueviolet) ![](https://img.shields.io/badge/mariadb-v10.4.11-blueviolet) ![](https://img.shields.io/badge/phpmyadmin-lates-blueviolet)
+<p align="center">
+  <a href="https://rocketfirm.com"><img src="https://img.shields.io/badge/rocketfirm-site-red"/></a>
+  <img src="https://img.shields.io/github/license/btn441/docker-npmc"/>
+  <img src="https://img.shields.io/github/repo-size/btn441/docker-npmc"/>
+  <img src="https://img.shields.io/badge/docker--compose-v3.7-blueviolet"/>
+  <img src="https://img.shields.io/badge/php--fpm-v7.2--fpm-blueviolet"/>
+  <img src="https://img.shields.io/badge/nginx-v1.17.6-blueviolet"/>
+  <img src="https://img.shields.io/badge/mariadb-v10.4.11-blueviolet"/>
+  <img src="https://img.shields.io/badge/phpmyadmin-lates-blueviolet"/>
+</p>
 
 # Добро пожаловать!
 Данная конфигурация поможет тебе с поддержкой нескольких проектов на __PHP__. И заставит забыть про геморой с установкой всех тех настроек, которые мы сейчас тебе тут опишем.
