@@ -1,4 +1,5 @@
-![GitHub](https://img.shields.io/github/license/btn441/docker-npmc) ![GitHub repo size](https://img.shields.io/github/repo-size/btn441/docker-npmc) ![](https://img.shields.io/badge/docker--compose-v3.7-blueviolet) ![](https://img.shields.io/badge/php--fpm-v7.2--fpm-blueviolet) ![](https://img.shields.io/badge/nginx-v1.17.6-blueviolet) ![](https://img.shields.io/badge/mariadb-v10.4.11-blueviolet) ![](https://img.shields.io/badge/phpmyadmin-lates-blueviolet)
+[![](https://img.shields.io/badge/rocketfirm-site-red)](https://rocketfirm.com) ![GitHub](https://img.shields.io/github/license/btn441/docker-npmc) ![GitHub repo size](https://img.shields.io/github/repo-size/btn441/docker-npmc) </br>
+![](https://img.shields.io/badge/docker--compose-v3.7-blueviolet) ![](https://img.shields.io/badge/php--fpm-v7.2--fpm-blueviolet) ![](https://img.shields.io/badge/nginx-v1.17.6-blueviolet) ![](https://img.shields.io/badge/mariadb-v10.4.11-blueviolet) ![](https://img.shields.io/badge/phpmyadmin-lates-blueviolet)
 
 # Добро пожаловать!
 Данная конфигурация поможет тебе с поддержкой нескольких проектов на __PHP__. И заставит забыть про геморой с установкой всех тех настроек, которые мы сейчас тебе тут опишем.
@@ -7,7 +8,7 @@
 Каждая ветка имеет свои плюшки!
 |Ветка|Описание|
 |:-:|:-:|
-|[master](https://github.com/btn441/docker-npmc)|Для нескольких проектов. С поддержкой __MariaDB__. (не рекомендуем)|
+|[master](https://github.com/btn441/docker-npmc/tree/master)|Для нескольких проектов. С поддержкой __MariaDB__. (не рекомендуем)|
 |[mysql](https://github.com/btn441/docker-npmc/tree/mysql)|Для одного проекта. С поддержкой __MySQL__|
 |[mariadb](https://github.com/btn441/docker-npmc/tree/mariadb)|Для одного проекта. С поддержкой __MariaDB__|
 
