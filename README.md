@@ -25,7 +25,7 @@
 # Установка
 1. Зайди в корень своего проекта (убедись, что нет директории ```docker```)
 2. В корне проекта запусти команду ```git clone https://github.com/btn441/docker-npmc.git -b mysql```
-3. Так же в корне проекта ```mv docker-npmc docker && rm -rf .git``` 
+3. Так же в корне проекта ```mv docker-npmc docker && rm -rf docker/.git``` 
 4. В ```/etc/hosts``` добавь домен в конце файла. Например: ```127.0.0.1 example.test```
 5. В ```docker/nginx/sites/default.conf``` измени ```server_name```
 Дальше уже зависит от того, как ты будешь использовать данную конфигурацию (с установкой __ВСЁ__).
