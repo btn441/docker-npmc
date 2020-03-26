@@ -1,4 +1,13 @@
-![GitHub](https://img.shields.io/github/license/btn441/docker-npmc) ![GitHub repo size](https://img.shields.io/github/repo-size/btn441/docker-npmc) ![](https://img.shields.io/badge/docker--compose-v3.7-blueviolet) ![](https://img.shields.io/badge/php--fpm-v7.2--fpm-blueviolet) ![](https://img.shields.io/badge/nginx-v1.17.6-blueviolet) ![](https://img.shields.io/badge/mysql-v5.7-blueviolet) ![](https://img.shields.io/badge/phpmyadmin-lates-blueviolet)
+<p align="center">
+  <a href="https://rocketfirm.com"><img src="https://img.shields.io/badge/rocketfirm-site-red"/></a>
+  <img src="https://img.shields.io/github/license/btn441/docker-npmc"/>
+  <img src="https://img.shields.io/github/repo-size/btn441/docker-npmc"/>
+  <img src="https://img.shields.io/badge/docker--compose-v3.7-blueviolet"/>
+  <img src="https://img.shields.io/badge/php--fpm-v7.2--fpm-blueviolet"/>
+  <img src="https://img.shields.io/badge/nginx-v1.17.6-blueviolet"/>
+  <img src="https://img.shields.io/badge/mariadb-v10.4.11-blueviolet"/>
+  <img src="https://img.shields.io/badge/phpmyadmin-lates-blueviolet"/>
+</p>
 
 # docker-npmc (mysql)
 Ветка для твоего проекта с поддержкой mysql.
