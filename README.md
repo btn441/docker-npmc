@@ -1,4 +1,6 @@
-
+<p align="center">
+  <img src="https://raw.githubusercontent.com/btn441/docker-npmc/mariadb/banner.png" width="300"/>
+</p>
 <p align="center">
   <a href="https://rocketfirm.com"><img src="https://img.shields.io/badge/rocketfirm-site-red"/></a>
   <img src="https://img.shields.io/github/license/btn441/docker-npmc"/>
