@@ -6,6 +6,8 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - ./mariadb:/var/lib/mysql
+    ports:
+      - 3306:3306
   mongo:
     image: mvertes/alpine-mongo
     environment:
@@ -13,10 +15,14 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: root
     volumes:
       - ./mongo:/data/db
+    ports:
+      - 27017:27017
   redis:
     image: redis:rc-alpine
     volumes:
       - ./redis:/data
+    ports:
+      - 6379:6379
 
   adminer:
     image: dehy/adminer
