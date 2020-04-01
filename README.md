@@ -7,28 +7,27 @@
   <img src="https://img.shields.io/github/repo-size/btn441/docker-npmc"/>
   <img src="https://img.shields.io/badge/docker--compose-v3.7-blueviolet"/>
   <img src="https://img.shields.io/badge/php--fpm-v7.2--fpm-blueviolet"/>
-  <img src="https://img.shields.io/badge/nginx-v1.17.6-blueviolet"/>
-  <img src="https://img.shields.io/badge/mariadb-v10.4.11-blueviolet"/>
-  <img src="https://img.shields.io/badge/phpmyadmin-lates-blueviolet"/>
+  <img src="https://img.shields.io/badge/nginx-alpine-blueviolet"/>
+  <img src="https://img.shields.io/badge/mariadb-alpine-blueviolet"/>
+  <img src="https://img.shields.io/badge/adminer-alpine-blueviolet"/>
 </p>
 
 # docker-npmc (mariadb)
 Ветка для твоего проекта с поддержкой mariadb.
 
-# Конфигурация
-Информация по конфигурации данной ветки.
-|Название|Версия|Ссылка|
+# Images
+Примерная информация веса всех images.
+|Image|Tag|Size|
 |:-:|:-:|:-:|
-|docker-compose|3.7|[docker-compose.yml](https://github.com/btn441/docker-npmc/blob/mariadb/docker-compose.yml)|
-|php-fpm|7.2-fpm|[Dockerfile](https://github.com/btn441/docker-npmc/blob/mariadb/php-fpm/Dockerfile)|
-|nginx|1.17.6|[Dockerfile](https://github.com/btn441/docker-npmc/blob/mariadb/nginx/Dockerfile)|
-|mariadb|10.4.11|[Dockerfile](https://github.com/btn441/docker-npmc/blob/mariadb/db/Dockerfile)|
-|phpmyadmin|lates|[image](https://hub.docker.com/r/phpmyadmin/phpmyadmin)|
+|[fromsi/php-fpm](https://hub.docker.com/r/fromsi/php-fpm)|latest|736MB|
+|[yobasystems/alpine-mariadb](https://hub.docker.com/r/yobasystems/alpine-mariadb)|latest|216MB|
+|[nginx](https://hub.docker.com/_/nginx)|alpine|37.9MB|
+|[dehy/adminer](https://hub.docker.com/r/dehy/adminer)|latest|19.7MB|
 
 # Установка
 1. Зайди в корень своего проекта (убедись, что нет директории ```docker```)
 2. В корне проекта запусти команду ```git clone https://github.com/btn441/docker-npmc.git -b mariadb```
-3. Так же в корне проекта ```mv docker-npmc docker && rm -rf docker/.git``` 
+3. Так же в корне проекта ```mv docker-npmc docker && rm -rf docker/.git && rm docker/banner.png``` 
 4. В ```/etc/hosts``` добавь домен в конце файла. Например: ```127.0.0.1 example.test```
 5. В ```docker/nginx/sites/default.conf``` измени ```server_name```
 Дальше уже зависит от того, как ты будешь использовать данную конфигурацию (с установкой __ВСЁ__).
@@ -40,8 +39,8 @@
 |:-:|:-:|
 |root|docker|
 
-## PHPMyAdmin
-Ссылка ```localhost:8765```
+## Adminer
+Ссылка ```localhost:8001```
 
 ## Composer
 Он находится в контейнере ```php-fpm```
