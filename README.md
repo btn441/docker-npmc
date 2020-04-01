@@ -7,23 +7,22 @@
   <img src="https://img.shields.io/github/repo-size/btn441/docker-npmc"/>
   <img src="https://img.shields.io/badge/docker--compose-v3.7-blueviolet"/>
   <img src="https://img.shields.io/badge/php--fpm-v7.2--fpm-blueviolet"/>
-  <img src="https://img.shields.io/badge/nginx-v1.17.6-blueviolet"/>
-  <img src="https://img.shields.io/badge/mariadb-v10.4.11-blueviolet"/>
-  <img src="https://img.shields.io/badge/phpmyadmin-lates-blueviolet"/>
+  <img src="https://img.shields.io/badge/nginx-alpine-blueviolet"/>
+  <img src="https://img.shields.io/badge/mysql-v5.7-blueviolet"/>
+  <img src="https://img.shields.io/badge/adminer-alpine-blueviolet"/>
 </p>
 
 # docker-npmc (mysql)
 Ветка для твоего проекта с поддержкой mysql.
 
-# Конфигурация
-Информация по конфигурации данной ветки.
-|Название|Версия|Ссылка|
+# Images
+Примерная информация веса всех images.
+|Image|Tag|Size|
 |:-:|:-:|:-:|
-|docker-compose|3.7|[docker-compose.yml](https://github.com/btn441/docker-npmc/blob/mysql/docker-compose.yml)|
-|php-fpm|7.2-fpm|[Dockerfile](https://github.com/btn441/docker-npmc/blob/mysql/php-fpm/Dockerfile)|
-|nginx|1.17.6|[Dockerfile](https://github.com/btn441/docker-npmc/blob/mysql/nginx/Dockerfile)|
-|mysql|5.7|[Dockerfile](https://github.com/btn441/docker-npmc/blob/mysql/db/Dockerfile)|
-|phpmyadmin|lates|[image](https://hub.docker.com/r/phpmyadmin/phpmyadmin)|
+|[fromsi/php-fpm](https://hub.docker.com/r/fromsi/php-fpm)|latest|736MB|
+|[mysql](https://hub.docker.com/_/mysql)|latest|456MB|
+|[nginx](https://hub.docker.com/_/nginx)|alpine|37.9MB|
+|[dehy/adminer](https://hub.docker.com/r/dehy/adminer)|latest|19.7MB|
 
 # Установка
 1. Зайди в корень своего проекта (убедись, что нет директории ```docker```)
@@ -40,8 +39,8 @@
 |:-:|:-:|
 |root|docker|
 
-## PHPMyAdmin
-Ссылка ```localhost:8765```
+## Adminer
+Ссылка ```localhost:8001```
 
 ## Composer
 Он находится в контейнере ```php-fpm```
