@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  nginx:
+    ports:
+      - "80:80"
+      - "443:443"
+  db:
+    ports:
+      - "6080:3306"
+  adminer:
+    ports:
+      - "8001:80"
