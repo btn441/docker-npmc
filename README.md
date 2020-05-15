@@ -25,13 +25,12 @@
 |[dehy/adminer](https://hub.docker.com/r/dehy/adminer)|latest|19.7MB|
 
 # Установка
-Для прошников: ```git clone https://github.com/btn441/docker-npmc.git -b mysql && mv docker-npmc docker && rm -rf docker/.git && rm docker/banner.png && rm docker/.gitignore && rm docker/LICENSE && mv docker/Makefile Makefile && mv docker/docker-compose.override.yml docker-compose.override.yml```
+Для прошников: ```git clone https://github.com/btn441/docker-npmc.git -b mysql && mv docker-npmc docker && rm -rf docker/.git && rm docker/banner.png && rm docker/.gitignore && rm docker/LICENSE && mv docker/Makefile Makefile```
 1. Зайди в корень своего проекта (убедись, что нет директории ```docker```)
 2. В корне проекта запусти команду ```git clone https://github.com/btn441/docker-npmc.git -b mysql```
 3. Так же в корне проекта ```mv docker-npmc docker && rm -rf docker/.git && rm docker/banner.png && rm docker/.gitignore && rm docker/LICENSE``` 
 4. В ```/etc/hosts``` добавь домен в конце файла. Например: ```127.0.0.1 example.test```
 5. В ```docker/nginx/default.conf``` измени ```server_name```
-6. Файл ```docker/docker-compose.override.yml``` перемести в корень проекта и не забудь добавить в __.gitignore__.
 Дальше уже зависит от того, как ты будешь использовать данную конфигурацию (с установкой __ВСЁ__).
 
 # Полезное
