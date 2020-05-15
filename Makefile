@@ -5,19 +5,10 @@ docker = docker-compose -f ./docker/docker-compose.yml
 run:
 	${docker} up -d
 	${docker} exec php-fpm sh -c "composer install"
-	${docker} exec php-fpm sh -c "php yii migrate" -l
 
 # Остановить работу Docker'а
 .PHONY: stop
 stop:
-	${docker} stop
-
-# Установить все необходимые зависимости (первая установка проекта)
-.PHONY: install
-install:
-	${docker} build
-	${docker} up -d
-	${docker} exec php-fpm sh -c "composer install" -l
 	${docker} stop
 
 # Зайти в bash php-fpm
