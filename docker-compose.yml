@@ -1,39 +1,40 @@
 version: '3.7'
+
 services:
   php-fpm:
-    build:
-      context: php-fpm
+    image: fromsi/php-fpm
     volumes:
-      - ${APP_PATH_HOST}:/var/www
-    working_dir: ${APP_PATH_CONTAINER}
+      - ../:/var/www
+      - ./php-fpm/php.ini:/usr/local/etc/php/conf.d/40-custom.ini
   nginx:
-    build:
-      context: nginx
+    image: nginx:alpine
     volumes:
-      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/sites/:/etc/nginx/sites-available
-      - ./nginx/conf.d/:/etc/nginx/conf.d
+      - ../:/var/www
+      - ./nginx/:/etc/nginx/conf.d
+      - ./nginx/vhosts:/etc/nginx/vhosts
     depends_on:
       - php-fpm
-    ports:
-      - "80:80"
-      - "443:443"
-  db:
-    build:
-      context: db
+  mariadb:
+    image: yobasystems/alpine-mariadb
     command: --default-authentication-plugin=mysql_native_password
-    volumes:
-      - ${DB_PATH_HOST}:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=docker
-    ports:
-      - "6080:3306"
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    links:
-      - db:db
-    ports:
-      - 8765:80
-    depends_on:
-      - db
+  adminer:
+    image: adminer
+    environment:
+      - ADMINER_DESIGN=hever
+    volumes:
+      - ./adminer/adminer.css:/var/www/html/designs/hever/adminer.css
+  mongo:
+    image: mvertes/alpine-mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+  mongo-express:
+    image: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_BASICAUTH_USERNAME: root
+      ME_CONFIG_BASICAUTH_PASSWORD: root
+  redis:
+    image: redis:rc-alpine

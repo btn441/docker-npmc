@@ -1,41 +1,47 @@
-# Для подробной информации перейдите по ссылке https://habr.com/ru/post/211751/
+docker = docker-compose -f ./docker/docker-compose.yml -f ./docker/docker-compose.override.yml 
 
-# Начало запроса к docker
-docker = docker-compose -f ~/Docker/docker-npmc/docker-compose.yml
+# Запустить Docker демона
+.PHONY: run
+run:
+	${docker} up -d
+	${docker} exec php-fpm sh -c "composer install"
 
-# Пользователь
-docker_user = user
-
-# Root пользователь
-docker_root = root
-
-# Путь до докера
-docker_dir_path = ~/Docker/docker-npmc
+# Остановить работу Docker'а
+.PHONY: stop
+stop:
+	${docker} stop
 
 # Зайти в bash php-fpm
+.PHONY: php
 php:
-	${docker} exec -u ${docker_user} php-fpm bash -l
+	${docker} exec php-fpm bash -l
 
-# Зайти в bash database
-database:
-	${docker} exec -u ${docker_root} database bash -l
+# Зайти в bash mariadb
+.PHONY: mariadb
+mariadb:
+	${docker} exec mariadb bash -l
+
+# Зайти в bash redis
+.PHONY: redis
+redis:
+	${docker} exec redis bash -l
 
 # Зайти в bash nginx
+.PHONY: nginx
 nginx:
-	${docker} exec -u ${docker_root} nginx bash -l
+	${docker} exec nginx bash -l
 
-# Зайти в bash phpmyadmin
-phpmyadmin:
-	${docker} exec -u ${docker_root} phpmyadmin bash -l
+# Зайти в bash mongo
+.PHONY: mongo
+mongo:
+	${docker} exec mongo bash -l
 
-# Сделать миграцию
-migrate:
-	${docker} exec -u ${docker_user} php-fpm sh -c "cd $(shell basename $(CURDIR)) && php yii migrate" -l
+# Зайти в bash adminer
+.PHONY: adminer
+adminer:
+	${docker} exec adminer sh -l
 
-# Установить зависимости
-install: 
-	${docker} exec -u ${docker_user} php-fpm sh -c "cd $(shell basename $(CURDIR)) && composer install" -l
-
-# Создать новый конфиг для nginx
-new:
-	bash ${docker_dir_path}/nginx/sites/generate.sh ${a} && echo "127.0.0.1 ${a}.test" | sudo tee -a /etc/hosts
+# Зайти в bash mongo-express
+.PHONY: mongo-express
+mongo-express:
+	${docker} exec mongo-express bash -l
