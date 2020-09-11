@@ -9,49 +9,75 @@
   <img src="https://img.shields.io/badge/php--fpm-v7.2--fpm-blueviolet"/>
   <img src="https://img.shields.io/badge/nginx-alpine-blueviolet"/>
   <img src="https://img.shields.io/badge/mariadb-alpine-blueviolet"/>
-  <img src="https://img.shields.io/badge/adminer-alpine-blueviolet"/>
+  <img src="https://img.shields.io/badge/adminer-latest-blueviolet"/>
+  <img src="https://img.shields.io/badge/mongo-latest-blueviolet"/>
+  <img src="https://img.shields.io/badge/mongo--express-latest-blueviolet"/>
 </p>
 
-# docker-npmc (mariadb)
-Ветка для твоего проекта с поддержкой mariadb.
+# docker-npmc
+Чтобы установить докер, достаточно зайти в проект и ввести ```git clone https://github.com/btn441/docker-npmc.git -b master && mv docker-npmc docker && cd docker && bash install.sh nginx php-fpm mariadb adminer && cd ..``` </br>
+По всем вопросам можешь писать в [issues](https://github.com/btn441/docker-npmc/issues) или [телегу](https://t.me/FromSi).
 
 # Images
 Примерная информация веса всех images.
 |Image|Tag|Size|
 |:-:|:-:|:-:|
-|[fromsi/php-fpm](https://hub.docker.com/r/fromsi/php-fpm)|latest|736MB|
+|[fromsi/php-fpm](https://hub.docker.com/r/fromsi/php-fpm)|latest|722MB|
 |[yobasystems/alpine-mariadb](https://hub.docker.com/r/yobasystems/alpine-mariadb)|latest|216MB|
-|[nginx](https://hub.docker.com/_/nginx)|alpine|37.9MB|
-|[dehy/adminer](https://hub.docker.com/r/dehy/adminer)|latest|19.7MB|
+|[nginx](https://hub.docker.com/_/nginx)|alpine|21.6MB|
+|[dehy/adminer](https://hub.docker.com/r/dehy/adminer)|latest|90.5MB|
+|[mvertes/alpine-mongo](https://hub.docker.com/r/mvertes/alpine-mongo)|latest|123MB|
+|[mongo-express](https://hub.docker.com/_/mongo-express)|latest|130MB|
+|[redis](https://hub.docker.com/_/redis)|alpine|32.2MB|
 
-# Установка
-Для прошников: ```git clone https://github.com/btn441/docker-npmc.git -b mariadb && mv docker-npmc docker && rm -rf docker/.git && rm docker/banner.png && rm docker/.gitignore && rm docker/LICENSE && mv docker/Makefile Makefile```
-1. Зайди в корень своего проекта (убедись, что нет директории ```docker```)
-2. В корне проекта запусти команду ```git clone https://github.com/btn441/docker-npmc.git -b mariadb```
-3. Так же в корне проекта ```mv docker-npmc docker && rm -rf docker/.git && rm docker/banner.png && rm docker/.gitignore && rm docker/LICENSE``` 
-4. В ```/etc/hosts``` добавь домен в конце файла. Например: ```127.0.0.1 example.test```
-5. В ```docker/nginx/default.conf``` измени ```server_name```
-Дальше уже зависит от того, как ты будешь использовать данную конфигурацию (с установкой __ВСЁ__).
+# Установка (для опытных)
+1. Зайди в корень проекта и запусти ```git clone https://github.com/btn441/docker-npmc.git -b master && mv docker-npmc docker```
+2. Ознакомься с образами ниже (нужно)
+3. Зайди в директорию __docker__
+4. Запусти установощник с выбранными образами. Пример: ```bash install.sh nginx php-fpm mariadb adminer```
+5. Запиши в .gitignore то, что нужно скрыть. Предлагаю записать __docker__ и __Makefile__
+6. Настрой конфиги проекта под докер и запустить в корне проекта ```make run```
+
+Если хочешь удалить сборку, пропиши в корне проекта ```rm Makefile && rm -rf docker```.
+
+## Образы
+|Образ|Флаг для подключения|Пример|
+|:-:|:-:|:-:|
+|php-fpm|pfp-fpm|```bash install.sh pfp-fpm```|
+|mariadb|mariadb|```bash install.sh mariadb```|
+|nginx|nginx|```bash install.sh nginx```|
+|adminer|adminer|```bash install.sh adminer```|
+|redis|redis|```bash install.sh redis```|
+|mongo|mongo|```bash install.sh mongo```|
+|mongo-express|mongo-express|```bash install.sh mongo-express```|
 
 # Полезное
 Эта информация тебе еще пригодится.
-## DB
+
+## MariaDB
 |Логин|Пароль|
 |:-:|:-:|
 |root|docker|
 
-## Adminer
-Ссылка ```localhost:8001```
-
-## Composer
-Он находится в контейнере ```php-fpm```
+## make php
+В контейнере ```php-fpm``` можно делать миграции, использовать __composer__ и __[deployer](https://deployer.org/)__.
 
 ## UID | GID
-Используется __1000__. Прописанно в Dockerfile.
+Используется __1000__ (проверяй свой __uid__ через команду `id` и подставляй свой в __php-fpm__ Dockerfile).
+
+## Ports
+Порты находятся в файле __docker-compose.override.yml__.
+|Контейнер|Порт|
+|:-:|:-:|
+|php-fpm|---|
+|nginx|80 и 443|
+|mariadb|3306|
+|adminer|8080|
+|mongo|27017|
+|mongo-express|8081|
+|redis|6379|
 
 ## Makefile
-Скопируй в ```docker``` файл ```Makefile```, в корень своего проекта.
-
 |Команда|Описание|
 |:-:|:-:|
 |run|Запустить __docker-compose__|
@@ -59,5 +85,8 @@
 |php|Зайти в контейнер __php-fpm__|
 |nginx|Зайти в контейнер __nginx__|
 |adminer|Зайти в контейнер __adminer__|
-|db|Зайти в контейнер __mariadb__|
+|mariadb|Зайти в контейнер __mariadb__|
+|mongo|Зайти в контейнер __mongo__|
+|mongo-express|Зайти в контейнер __mongo-express__|
+|redis|Зайти в контейнер __redis__|
 
