@@ -55,9 +55,9 @@
 Эта информация тебе еще пригодится.
 
 ## MariaDB
-|Логин|Пароль|
-|:-:|:-:|
-|root|docker|
+|Host|Логин|Пароль|
+|:-:|:-:|:-:|
+|mariadb|root|docker|
 
 ## make php
 В контейнере ```php-fpm``` можно делать миграции, использовать __composer__ и __[deployer](https://deployer.org/)__.
