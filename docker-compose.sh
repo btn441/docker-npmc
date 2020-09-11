@@ -14,6 +14,7 @@ PHP_FPM=$(cat <<EOF
     volumes:
       - ../:/var/www:delegated
       - ./php-fpm/php.ini:/usr/local/etc/php/conf.d/40-custom.ini:delegated
+      - ~/.ssh:/home/www-data/.ssh:delegated
 EOF
 )
 

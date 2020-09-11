@@ -80,6 +80,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends apt-utils \
 
 RUN su - www-data -c "composer global require hirak/prestissimo"
 
+RUN apt-get update -y && \
+    apt-get install -y openssh-client && \
+    mkdir -p /home/www-data/.ssh && \
+    chmod 777 /home/www-data/.ssh 
+
+RUN curl -LO https://deployer.org/releases/v6.4.7/deployer.phar && \
+    mv deployer.phar /usr/local/bin/dep && \
+    chmod +x /usr/local/bin/dep
+
 USER www-data
 
 WORKDIR /var/www
