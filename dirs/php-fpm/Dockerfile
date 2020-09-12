@@ -59,6 +59,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends apt-utils \
 	        mysqli \
 	        pdo_mysql\
 	        soap\
+		exif\
 
 \
 # PCNTL Library Ifyou Need
