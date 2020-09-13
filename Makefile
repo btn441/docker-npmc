@@ -24,7 +24,7 @@ mariadb:
 # Зайти в bash redis
 .PHONY: redis
 redis:
-	${docker} exec redis bash -l
+	${docker} exec redis sh -l
 
 # Зайти в bash nginx
 .PHONY: nginx
@@ -34,7 +34,7 @@ nginx:
 # Зайти в bash mongo
 .PHONY: mongo
 mongo:
-	${docker} exec mongo bash -l
+	${docker} exec mongo sh -l
 
 # Зайти в bash adminer
 .PHONY: adminer
