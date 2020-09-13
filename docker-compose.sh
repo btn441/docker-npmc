@@ -26,6 +26,7 @@ NGINX=$(cat <<EOF
       - ../:/var/www:delegated
       - ./nginx/:/etc/nginx/conf.d:delegated
       - ./nginx/vhosts:/etc/nginx/vhosts:delegated
+      - ./nginx/logs:/var/log/nginx:delegated
     depends_on:
       - php-fpm
 EOF
