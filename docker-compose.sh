@@ -76,7 +76,7 @@ EOF
 REDIS=$(cat <<EOF
 
   redis:
-    image: redis:rc-alpine
+    image: redis:alpine
 EOF
 )
 

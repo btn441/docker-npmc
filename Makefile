@@ -29,7 +29,7 @@ redis:
 # Зайти в bash nginx
 .PHONY: nginx
 nginx:
-	${docker} exec nginx bash -l
+	${docker} exec nginx sh -l
 
 # Зайти в bash mongo
 .PHONY: mongo
