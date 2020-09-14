@@ -4,7 +4,6 @@ docker = docker-compose -f ./docker/docker-compose.yml -f ./docker/docker-compos
 .PHONY: run
 run:
 	${docker} up -d
-	${docker} exec php-fpm sh -c "composer install"
 
 # Остановить работу Docker'а
 .PHONY: stop
