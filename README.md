@@ -15,7 +15,7 @@
 </p>
 
 # docker-npmc
-Чтобы установить докер, достаточно зайти в проект и ввести ```git clone https://github.com/btn441/docker-npmc.git -b master && mv docker-npmc docker && cd docker && bash install.sh nginx php-fpm mariadb adminer && cd ..``` </br>
+Чтобы установить докер сборку, достаточно зайти в проект и ввести ```git clone https://github.com/btn441/docker-npmc.git -b master && mv docker-npmc docker && cd docker && bash install.sh nginx php-fpm mariadb adminer && cd ..``` </br>
 По всем вопросам можешь писать в [issues](https://github.com/btn441/docker-npmc/issues) или [телегу](https://t.me/FromSi).
 
 # Images
