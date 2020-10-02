@@ -104,10 +104,10 @@ do
     elif [ $var = 'mariadb' ]
     then
     CONTENT+=$MARIADB
-    elif [ $var = 'adminer' ]
+    elif [ $var = 'postgres' ]
     then
     CONTENT+=$POSTGRES
-    elif [ $var = 'postgres' ]
+    elif [ $var = 'adminer' ]
     then
     CONTENT+=$ADMINER
     elif [ $var = 'mongo' ]
