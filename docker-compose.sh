@@ -45,6 +45,15 @@ MARIADB=$(cat <<EOF
 EOF
 )
 
+POSTGRES=$(cat <<EOF
+
+  postgres:
+    image: postgres/alpine
+    environment:
+      POSTGRES_PASSWORD: docker
+EOF
+)
+
 ADMINER=$(cat <<EOF
 
   adminer:
@@ -96,6 +105,9 @@ do
     then
     CONTENT+=$MARIADB
     elif [ $var = 'adminer' ]
+    then
+    CONTENT+=$POSTGRES
+    elif [ $var = 'postgres' ]
     then
     CONTENT+=$ADMINER
     elif [ $var = 'mongo' ]

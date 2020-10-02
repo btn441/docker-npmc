@@ -24,6 +24,14 @@ MARIADB=$(cat <<EOF
 EOF
 )
 
+POSTGRES=$(cat <<EOF
+
+  postgres:
+    ports:
+      - "5432:5432"
+EOF
+)
+
 ADMINER=$(cat <<EOF
 
   adminer:
@@ -62,6 +70,9 @@ do
     then
     CONTENT+=$NGINX
     elif [ $var = 'mariadb' ]
+    then
+    CONTENT+=$POSTGRES
+    elif [ $var = 'postgres' ]
     then
     CONTENT+=$MARIADB
     elif [ $var = 'adminer' ]

@@ -20,6 +20,11 @@ php:
 mariadb:
 	${docker} exec mariadb bash -l
 
+# Зайти в bash postgres
+.PHONY: postgmariadbres
+postgres:
+	${docker} exec postgres sh -l
+
 # Зайти в bash redis
 .PHONY: redis
 redis:

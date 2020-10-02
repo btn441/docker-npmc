@@ -6,9 +6,10 @@
   <img src="https://img.shields.io/github/license/btn441/docker-npmc"/>
   <img src="https://img.shields.io/github/repo-size/btn441/docker-npmc"/>
   <img src="https://img.shields.io/badge/docker--compose-v3.7-blueviolet"/>
-  <img src="https://img.shields.io/badge/php--fpm-v7.2--fpm-blueviolet"/>
+  <img src="https://img.shields.io/badge/php--fpm-v7.3--fpm-blueviolet"/>
   <img src="https://img.shields.io/badge/nginx-alpine-blueviolet"/>
   <img src="https://img.shields.io/badge/mariadb-alpine-blueviolet"/>
+  <img src="https://img.shields.io/badge/postgres-alpine-blueviolet"/>
   <img src="https://img.shields.io/badge/adminer-latest-blueviolet"/>
   <img src="https://img.shields.io/badge/mongo-latest-blueviolet"/>
   <img src="https://img.shields.io/badge/mongo--express-latest-blueviolet"/>
@@ -24,6 +25,7 @@
 |:-:|:-:|:-:|
 |[fromsi/php-fpm](https://hub.docker.com/r/fromsi/php-fpm)|latest|722MB|
 |[yobasystems/alpine-mariadb](https://hub.docker.com/r/yobasystems/alpine-mariadb)|latest|216MB|
+|[postgres/alpine](https://hub.docker.com/_/postgres)|alpine|160MB|
 |[nginx](https://hub.docker.com/_/nginx)|alpine|21.6MB|
 |[dehy/adminer](https://hub.docker.com/r/dehy/adminer)|latest|90.5MB|
 |[mvertes/alpine-mongo](https://hub.docker.com/r/mvertes/alpine-mongo)|latest|123MB|
@@ -45,6 +47,7 @@
 |:-:|:-:|:-:|
 |php-fpm|pfp-fpm|```bash install.sh pfp-fpm```|
 |mariadb|mariadb|```bash install.sh mariadb```|
+|postgres|postgres|```bash install.sh postgres```|
 |nginx|nginx|```bash install.sh nginx```|
 |adminer|adminer|```bash install.sh adminer```|
 |redis|redis|```bash install.sh redis```|
@@ -54,10 +57,11 @@
 # Полезное
 Эта информация тебе еще пригодится.
 
-## MariaDB
-|Host|Логин|Пароль|
-|:-:|:-:|:-:|
-|mariadb|root|docker|
+## DB
+|Type|Host|Логин|Пароль|
+|:-:|:-:|:-:|:-:|
+|MySQL|mariadb|root|docker|
+|PostgreSQL|postgres|postgres|docker|
 
 ## make php
 В контейнере ```php-fpm``` можно делать миграции, использовать __composer__ и __[deployer](https://deployer.org/)__.
@@ -72,6 +76,7 @@
 |php-fpm|---|
 |nginx|80 и 443|
 |mariadb|3306|
+|postgres|5432|
 |adminer|8080|
 |mongo|27017|
 |mongo-express|8081|
@@ -86,6 +91,7 @@
 |nginx|Зайти в контейнер __nginx__|
 |adminer|Зайти в контейнер __adminer__|
 |mariadb|Зайти в контейнер __mariadb__|
+|postgres|Зайти в контейнер __postgres__|
 |mongo|Зайти в контейнер __mongo__|
 |mongo-express|Зайти в контейнер __mongo-express__|
 |redis|Зайти в контейнер __redis__|
