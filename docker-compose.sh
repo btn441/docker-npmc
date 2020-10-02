@@ -48,7 +48,7 @@ EOF
 POSTGRES=$(cat <<EOF
 
   postgres:
-    image: postgres/alpine
+    image: postgres:alpine
     environment:
       POSTGRES_PASSWORD: docker
 EOF
