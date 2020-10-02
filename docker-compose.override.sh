@@ -71,10 +71,10 @@ do
     CONTENT+=$NGINX
     elif [ $var = 'mariadb' ]
     then
-    CONTENT+=$POSTGRES
+    CONTENT+=$MARIADB
     elif [ $var = 'postgres' ]
     then
-    CONTENT+=$MARIADB
+    CONTENT+=$POSTGRES
     elif [ $var = 'adminer' ]
     then
     CONTENT+=$ADMINER
