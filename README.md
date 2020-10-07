@@ -96,3 +96,9 @@
 |mongo-express|Зайти в контейнер __mongo-express__|
 |redis|Зайти в контейнер __redis__|
 
+## Install Laravel
+В контейнере нужно прописать команды:
+```
+$ composer global require "laravel/installer"
+$ echo "export PATH=$PATH:$HOME/.composer/vendor/bin" > .profile
+```
