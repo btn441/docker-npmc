@@ -100,5 +100,7 @@
 В контейнере нужно прописать команды:
 ```
 $ composer global require "laravel/installer"
-$ echo "export PATH=$PATH:$HOME/.composer/vendor/bin" > .profile
+$ echo "export PATH=$PATH:$HOME/.composer/vendor/bin" > $HOME/.profile
+$ exit
 ```
+Как только откроется новая сессия bash, команда Laravel будет доступен для использования.
