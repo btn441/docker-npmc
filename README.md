@@ -103,4 +103,4 @@ $ composer global require "laravel/installer"
 $ echo "export PATH=$PATH:$HOME/.composer/vendor/bin" > $HOME/.profile
 $ exit
 ```
-Как только откроется новая сессия bash, команда Laravel будет доступна для использования. Либо можно создать файл `.profile` и подключить его через `docker-compose.yml`.
+Как только откроется новая сессия bash, команда Laravel будет доступна для использования. Либо можно создать файл `.profile` (+ `.composer`) и подключить все нужные ресурсы через `docker-compose.yml`. (laravel в сделку не входила :))
