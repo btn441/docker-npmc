@@ -10,9 +10,9 @@ EOF
 PHP_FPM=$(cat <<EOF
 
   php-fpm:
-    build:
-      context: php-fpm
-      dockerfile: Dockerfile
+    #build:
+      #context: php-fpm
+      #dockerfile: Dockerfile
     image: fromsi/php-fpm
     volumes:
       - ../:/var/www:delegated
