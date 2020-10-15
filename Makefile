@@ -15,32 +15,32 @@ stop:
 php:
 	${docker} exec php-fpm bash -l
 
-# Зайти в bash mariadb
+# Зайти в sh mariadb
 .PHONY: mariadb
 mariadb:
-	${docker} exec mariadb bash -l
+	${docker} exec mariadb sh -l
 
-# Зайти в bash postgres
+# Зайти в sh postgres
 .PHONY: postgmariadbres
 postgres:
 	${docker} exec postgres sh -l
 
-# Зайти в bash redis
+# Зайти в sh redis
 .PHONY: redis
 redis:
 	${docker} exec redis sh -l
 
-# Зайти в bash nginx
+# Зайти в sh nginx
 .PHONY: nginx
 nginx:
 	${docker} exec nginx sh -l
 
-# Зайти в bash mongo
+# Зайти в sh mongo
 .PHONY: mongo
 mongo:
 	${docker} exec mongo sh -l
 
-# Зайти в bash adminer
+# Зайти в sh adminer
 .PHONY: adminer
 adminer:
 	${docker} exec adminer sh -l
