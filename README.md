@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/github/license/btn441/docker-npmc"/>
   <img src="https://img.shields.io/github/repo-size/btn441/docker-npmc"/>
   <img src="https://img.shields.io/badge/docker--compose-v3.7-blueviolet"/>
-  <img src="https://img.shields.io/badge/php--fpm-v7.3--fpm-blueviolet"/>
+  <img src="https://img.shields.io/badge/php--fpm-v7.4--fpm-blueviolet"/>
   <img src="https://img.shields.io/badge/nginx-alpine-blueviolet"/>
   <img src="https://img.shields.io/badge/mariadb-alpine-blueviolet"/>
   <img src="https://img.shields.io/badge/postgres-alpine-blueviolet"/>
@@ -23,7 +23,7 @@
 Примерная информация веса всех images.
 |Image|Tag|Size|
 |:-:|:-:|:-:|
-|[fromsi/php-fpm](https://hub.docker.com/r/fromsi/php-fpm)|latest|722MB|
+|[fromsi/php-fpm](https://hub.docker.com/r/fromsi/php-fpm)|latest|719MB|
 |[yobasystems/alpine-mariadb](https://hub.docker.com/r/yobasystems/alpine-mariadb)|latest|216MB|
 |[postgres/alpine](https://hub.docker.com/_/postgres)|alpine|160MB|
 |[nginx](https://hub.docker.com/_/nginx)|alpine|21.6MB|
