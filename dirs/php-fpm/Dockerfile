@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:7.4-fpm as php-base
 
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils \
 \
@@ -32,10 +32,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends apt-utils \
 # ******** Configure
 # Cconfigure GD
     && docker-php-ext-configure gd \
-                 --with-gd \
-                 --with-jpeg-dir \
-                 --with-png-dir \
-                 --with-zlib-dir \
+                 --with-jpeg \
+                 --with-freetype \
 	&& docker-php-ext-install gd \
 \
 #Configure Imagick
@@ -43,13 +41,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends apt-utils \
     && docker-php-ext-enable imagick \
 \
 #Configure ZIP
-    && docker-php-ext-configure zip --with-libzip \
+    && docker-php-ext-configure zip \
 	&& docker-php-ext-install zip \
 \
 #Configure Another Dependencies
 	&& docker-php-ext-install \
 	        curl \
-	        mbstring \
 	        xml\
 	        sockets \
 	        intl \
@@ -58,9 +55,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends apt-utils \
 	        pdo \
 	        mysqli \
 	        pdo_mysql\
-	        soap\
-		exif\
-
 \
 # PCNTL Library Ifyou Need
 #    && docker-php-ext-install pcntl \
@@ -76,20 +70,34 @@ RUN apt-get update && apt-get install -y --no-install-recommends apt-utils \
                     /home/www-data \
         \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && rm -rf /tmp/* /var/cache/apk/* \
-    && rm -r /var/lib/apt/lists/*
+    && rm -rf /tmp/* /var/cache/apk/*
 
-RUN su - www-data -c "composer global require hirak/prestissimo"
+#RUN su - www-data -c "composer global require hirak/prestissimo"
+
+ENV PATH=${PATH}:/home/www-data/.composer/vendor/bin
+
+WORKDIR /var/www
+
+
+
+FROM php-base
+
+# Xdebug
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
+COPY ./php.ini /usr/local/etc/php/conf.d/php.ini
 
 RUN apt-get update -y && \
     apt-get install -y openssh-client && \
     mkdir -p /home/www-data/.ssh && \
-    chmod 777 /home/www-data/.ssh 
+    chmod 777 /home/www-data/.ssh
+
+RUN apt-get install -y jpegoptim optipng pngquant
 
 RUN curl -LO https://deployer.org/releases/v6.4.7/deployer.phar && \
     mv deployer.phar /usr/local/bin/dep && \
     chmod +x /usr/local/bin/dep
 
-USER www-data
-
 WORKDIR /var/www
+
+USER www-data
