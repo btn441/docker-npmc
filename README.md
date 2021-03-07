@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/github/repo-size/btn441/docker-npmc"/>
   <img src="https://img.shields.io/badge/docker--compose-v3.7-blueviolet"/>
   <img src="https://img.shields.io/badge/php--fpm-v7.4--fpm-blueviolet"/>
-  <img src="https://img.shields.io/badge/elasticsearch--7.10.1-blueviolet"/>
+  <img src="https://img.shields.io/badge/elasticsearch-7.10.1-blueviolet"/>
   <img src="https://img.shields.io/badge/nginx-alpine-blueviolet"/>
   <img src="https://img.shields.io/badge/mariadb-alpine-blueviolet"/>
   <img src="https://img.shields.io/badge/postgres-alpine-blueviolet"/>
