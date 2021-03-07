@@ -7,6 +7,7 @@
   <img src="https://img.shields.io/github/repo-size/btn441/docker-npmc"/>
   <img src="https://img.shields.io/badge/docker--compose-v3.7-blueviolet"/>
   <img src="https://img.shields.io/badge/php--fpm-v7.4--fpm-blueviolet"/>
+  <img src="https://img.shields.io/badge/elasticsearch--7.10.1-blueviolet"/>
   <img src="https://img.shields.io/badge/nginx-alpine-blueviolet"/>
   <img src="https://img.shields.io/badge/mariadb-alpine-blueviolet"/>
   <img src="https://img.shields.io/badge/postgres-alpine-blueviolet"/>
@@ -23,6 +24,7 @@
 Примерная информация веса всех images.
 |Image|Tag|Size|
 |:-:|:-:|:-:|
+|[elasticsearch](https://hub.docker.com/_/elasticsearch)|7.10.1|774MB|
 |[fromsi/php-fpm](https://hub.docker.com/r/fromsi/php-fpm)|latest|719MB|
 |[yobasystems/alpine-mariadb](https://hub.docker.com/r/yobasystems/alpine-mariadb)|latest|216MB|
 |[postgres/alpine](https://hub.docker.com/_/postgres)|alpine|160MB|
@@ -53,6 +55,7 @@
 |redis|redis|```bash install.sh redis```|
 |mongo|mongo|```bash install.sh mongo```|
 |mongo-express|mongo-express|```bash install.sh mongo-express```|
+|elasticsearch|elasticsearch|```bash install.sh elasticsearch```|
 
 # Полезное
 Эта информация тебе еще пригодится.
@@ -81,6 +84,7 @@
 |mongo|27017|
 |mongo-express|8081|
 |redis|6379|
+|elasticsearch|9200|
 
 ## Makefile
 |Команда|Описание|
@@ -95,12 +99,4 @@
 |mongo|Зайти в контейнер __mongo__|
 |mongo-express|Зайти в контейнер __mongo-express__|
 |redis|Зайти в контейнер __redis__|
-
-## Install Laravel
-В контейнере нужно прописать команды:
-```
-$ composer global require "laravel/installer"
-$ echo "export PATH=$PATH:$HOME/.composer/vendor/bin" > $HOME/.profile
-$ exit
-```
-Как только откроется новая сессия bash, команда Laravel будет доступна для использования. Либо можно создать файл `.profile` (+ `.composer`) и подключить все нужные ресурсы через `docker-compose.yml`. (laravel в сделку не входила :))
+|elasticsearch|Зайти в контейнер __elasticsearch__|

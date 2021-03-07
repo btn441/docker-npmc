@@ -93,6 +93,16 @@ REDIS=$(cat <<EOF
 EOF
 )
 
+ELASTICSEARCH=$(cat <<EOF
+
+  elasticsearch:
+    image: elasticsearch:7.10.1
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+EOF
+)
+
 for var in "$@"
 do
     if [ $var = 'php-fpm' ]
@@ -119,6 +129,9 @@ do
     elif [ $var = 'redis' ]
     then
     CONTENT+=$REDIS
+    elif [ $var = 'elasticsearch' ]
+    then
+    CONTENT+=$ELASTICSEARCH
     fi
 done
 

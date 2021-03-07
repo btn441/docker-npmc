@@ -64,6 +64,14 @@ REDIS=$(cat <<EOF
 EOF
 )
 
+ELASTICSEARCH=$(cat <<EOF
+
+  elasticsearch:
+    ports:
+      - 9200:9200
+EOF
+)
+
 for var in "$@"
 do
     if [ $var = 'nginx' ]
@@ -87,6 +95,9 @@ do
     elif [ $var = 'redis' ]
     then
     CONTENT+=$REDIS
+    elif [ $var = 'elasticsearch' ]
+    then
+    CONTENT+=$ELASTICSEARCH
     fi
 done
 

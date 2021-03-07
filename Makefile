@@ -49,3 +49,8 @@ adminer:
 .PHONY: mongo-express
 mongo-express:
 	${docker} exec mongo-express bash -l
+
+# Зайти в bash elasticsearch
+.PHONY: elasticsearch
+elasticsearch:
+	${docker} exec elasticsearch bash -l
