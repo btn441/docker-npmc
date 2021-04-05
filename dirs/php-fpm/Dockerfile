@@ -51,6 +51,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends apt-utils \
 	        sockets \
 	        intl \
 	        bcmath \
+	        exif \
 \
 	        pdo \
 	        pdo_pgsql \
