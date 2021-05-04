@@ -48,9 +48,12 @@ EOF
 POSTGRES=$(cat <<EOF
 
   postgres:
-    image: postgres:alpine
+    image: kartoza/postgis
     environment:
-      POSTGRES_PASSWORD: docker
+      POSTGRES_USER: postgres
+      POSTGRES_PASS: docker
+      REPLICATION: 'true'
+      WAL_LEVEL: 'logical'
 EOF
 )
 
