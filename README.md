@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/elasticsearch-7.10.1-blueviolet"/>
   <img src="https://img.shields.io/badge/nginx-alpine-blueviolet"/>
   <img src="https://img.shields.io/badge/mariadb-alpine-blueviolet"/>
-  <img src="https://img.shields.io/badge/postgres-alpine-blueviolet"/>
+  <img src="https://img.shields.io/badge/postgres-latest-blueviolet"/>
   <img src="https://img.shields.io/badge/adminer-latest-blueviolet"/>
   <img src="https://img.shields.io/badge/mongo-latest-blueviolet"/>
   <img src="https://img.shields.io/badge/mongo--express-latest-blueviolet"/>
@@ -26,8 +26,8 @@
 |:-:|:-:|:-:|
 |[elasticsearch](https://hub.docker.com/_/elasticsearch)|7.10.1|774MB|
 |[fromsi/php-fpm](https://hub.docker.com/r/fromsi/php-fpm)|latest|719MB|
+|[kartoza/postgis](https://hub.docker.com/r/kartoza/postgis/)|latest|491MB|
 |[yobasystems/alpine-mariadb](https://hub.docker.com/r/yobasystems/alpine-mariadb)|latest|216MB|
-|[postgres/alpine](https://hub.docker.com/_/postgres)|alpine|160MB|
 |[nginx](https://hub.docker.com/_/nginx)|alpine|21.6MB|
 |[dehy/adminer](https://hub.docker.com/r/dehy/adminer)|latest|90.5MB|
 |[mvertes/alpine-mongo](https://hub.docker.com/r/mvertes/alpine-mongo)|latest|123MB|
