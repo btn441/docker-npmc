@@ -21,7 +21,7 @@ mariadb:
 	${docker} exec mariadb sh -l
 
 # Зайти в sh postgres
-.PHONY: postgmariadbres
+.PHONY: postgres
 postgres:
 	${docker} exec postgres sh -l
 
