@@ -25,7 +25,7 @@
 |Image|Tag|Size|
 |:-:|:-:|:-:|
 |[elasticsearch](https://hub.docker.com/_/elasticsearch)|7.10.1|774MB|
-|[fromsi/php-fpm](https://hub.docker.com/r/fromsi/php-fpm)|latest|719MB|
+|[rocketfirm911/php-fpm](https://hub.docker.com/r/rocketfirm911/php-fpm)|latest|719MB|
 |[kartoza/postgis](https://hub.docker.com/r/kartoza/postgis/)|latest|491MB|
 |[yobasystems/alpine-mariadb](https://hub.docker.com/r/yobasystems/alpine-mariadb)|latest|216MB|
 |[nginx](https://hub.docker.com/_/nginx)|alpine|21.6MB|
