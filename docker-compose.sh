@@ -13,7 +13,7 @@ PHP_FPM=$(cat <<EOF
     #build:
       #context: php-fpm
       #dockerfile: Dockerfile
-    image: fromsi/php-fpm
+    image: rocketfirm911/php-fpm:7.4
     volumes:
       - ../:/var/www:delegated
       - ./php-fpm/php.ini:/usr/local/etc/php/conf.d/40-custom.ini:delegated
