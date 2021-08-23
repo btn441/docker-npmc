@@ -14,6 +14,11 @@ stop:
 .PHONY: php
 php:
 	${docker} exec php-fpm bash -l
+	
+# Зайти в bash php-fpm под root пользователем
+.PHONY: php-root
+php-root:
+	${docker} exec -u root php-fpm bash -l
 
 # Зайти в sh mariadb
 .PHONY: mariadb
