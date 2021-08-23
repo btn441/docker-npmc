@@ -92,6 +92,7 @@
 |run|Запустить __docker-compose__|
 |stop|Остановить __docker-compose__|
 |php|Зайти в контейнер __php-fpm__|
+|php-root|Зайти в контейнер __php-fpm__ под root пользователем|
 |nginx|Зайти в контейнер __nginx__|
 |adminer|Зайти в контейнер __adminer__|
 |mariadb|Зайти в контейнер __mariadb__|
