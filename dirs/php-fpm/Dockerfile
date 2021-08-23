@@ -27,27 +27,26 @@ RUN apt-get update && apt-get install -y --no-install-recommends apt-utils \
         libxpm-dev \
 \
 #Custom Build Dependencies
-         python git \
-\
+         python git
 # ******** Configure
 # Cconfigure GD
-    && docker-php-ext-configure gd \
+RUN docker-php-ext-configure gd \
                  --with-jpeg \
                  --with-freetype \
-	&& docker-php-ext-install gd \
-\
+	&& docker-php-ext-install gd
+
 #Configure Imagick
-    && pecl install imagick \
-    && docker-php-ext-enable imagick \
-\
+RUN pecl install imagick \
+  && docker-php-ext-enable imagick
+
 #Configure ZIP
-    && docker-php-ext-configure zip \
-	&& docker-php-ext-install zip \
-\
+RUN docker-php-ext-configure zip
+RUN docker-php-ext-install zip
+
 #Configure Another Dependencies
-	&& docker-php-ext-install \
+RUN docker-php-ext-install \
 	        curl \
-	        xml\
+	        xml \
 	        sockets \
 	        intl \
 	        bcmath \
@@ -57,16 +56,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends apt-utils \
 	        pdo_pgsql \
 	        pgsql \
 	        mysqli \
-	        pdo_mysql\
-\
+	        pdo_mysql
+
+RUN pecl install redis && docker-php-ext-enable redis
+
 # PCNTL Library Ifyou Need
 #    && docker-php-ext-install pcntl \
-\
-        \
-            &&  userdel -f www-data &&\
+RUN  userdel -f www-data &&\
                 if getent group www-data ; then groupdel www-data; fi &&\
                 groupadd -g 1000 www-data &&\
-                useradd -l -u 1000 -g www-data www-data &&\
+                useradd -l -u 1000 -g www-data www-data -p docker &&\
                 install -d -m 0755 -o www-data -g www-data /home/www-data &&\
                 chown --changes --silent --no-dereference --recursive \
                       --from=33:33 1000:1000 \
