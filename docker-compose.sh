@@ -48,12 +48,13 @@ EOF
 POSTGRES=$(cat <<EOF
 
   postgres:
-    image: kartoza/postgis
+    image: postgres:13
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASS: docker
-      REPLICATION: 'true'
-      WAL_LEVEL: 'logical'
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./postgres/datadir:/var/lib/postgresql/data
+
 EOF
 )
 
