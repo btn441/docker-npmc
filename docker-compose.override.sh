@@ -28,9 +28,11 @@ POSTGRES=$(cat <<EOF
 
   postgres:
     environment:
-      POSTGRES_DB: db_name
+      REPLICATION: 'true'
+      WAL_LEVEL: 'logical'
     ports:
-      - "5432:5432"
+      - 5432:5432
+
 EOF
 )
 
