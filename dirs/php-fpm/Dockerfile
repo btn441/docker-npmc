@@ -1,105 +1,104 @@
-FROM php:7.4-fpm as php-base
+FROM --platform=linux/arm64 php:8.0-fpm
 
-RUN apt-get update && apt-get install -y --no-install-recommends apt-utils \
-\
-# ZIP/Bzip/Archive
-            libbz2-dev \
-                zlib1g-dev \
-                libzip-dev \
-                zip unzip \
-\
-# IMAGES Imagick/Gd Dependencies
-            libjpeg-dev \
-		    libjpeg62-turbo-dev \
-            libfreetype6-dev \
-            libwebp-dev \
-            libpng-dev \
-            libmagickwand-dev \
-            libmagickcore-dev \
-\
-#PostgreSQL DependencyLib
+ENV COMPOSER_MEMORY_LIMIT='-1'
+
+RUN apt-get update && \
+    apt-get install -y --force-yes --no-install-recommends \
+        libmemcached-dev \
+        libzip-dev \
+        libz-dev \
+        libzip-dev \
         libpq-dev \
-\
-# Another PHP Default Dependencies
-        libmcrypt-dev \
-        libxml++2.6-dev \
-        libcurl3-dev \
-        libxpm-dev \
-\
-#Custom Build Dependencies
-         python git
-# ******** Configure
-# Cconfigure GD
-RUN docker-php-ext-configure gd \
-                 --with-jpeg \
-                 --with-freetype \
-	&& docker-php-ext-install gd
+        libjpeg-dev \
+        libpng-dev \
+        libfreetype6-dev \
+        libssl-dev \
+        openssh-server \
+        libmagickwand-dev \
+        git \
+        cron \
+        nano \
+        libxml2-dev \
+        libreadline-dev \
+        libgmp-dev \
+        mariadb-client \
+        unzip
 
-#Configure Imagick
-RUN pecl install imagick \
-  && docker-php-ext-enable imagick
+# Install soap extention
+RUN docker-php-ext-install soap
 
-#Configure ZIP
-RUN docker-php-ext-configure zip
+# Install for image manipulation
+RUN docker-php-ext-install exif
+
+# Install the PHP pcntl extention
+RUN docker-php-ext-install pcntl
+
+# Install the PHP zip extention
 RUN docker-php-ext-install zip
 
-#Configure Another Dependencies
-RUN docker-php-ext-install \
-	        curl \
-	        xml \
-	        sockets \
-	        intl \
-	        bcmath \
-	        exif \
-\
-	        pdo \
-	        pdo_pgsql \
-	        pgsql \
-	        mysqli \
-	        pdo_mysql
+# Install the PHP pdo_mysql extention
+RUN docker-php-ext-install pdo_mysql
 
+# Install the PHP pdo_pgsql extention
+RUN docker-php-ext-install pdo_pgsql
+
+# Install the PHP bcmath extension
+RUN docker-php-ext-install bcmath
+
+# Install the PHP intl extention
+RUN docker-php-ext-install intl
+
+# Install the PHP gmp extention
+RUN docker-php-ext-install gmp
+
+#####################################
+# PHPRedis:
+#####################################
 RUN pecl install redis && docker-php-ext-enable redis
 
-# PCNTL Library Ifyou Need
-#    && docker-php-ext-install pcntl \
-RUN  userdel -f www-data &&\
-                if getent group www-data ; then groupdel www-data; fi &&\
-                groupadd -g 1000 www-data &&\
-                useradd -l -u 1000 -g www-data www-data -p docker &&\
-                install -d -m 0755 -o www-data -g www-data /home/www-data &&\
-                chown --changes --silent --no-dereference --recursive \
-                      --from=33:33 1000:1000 \
-                    /home/www-data \
-        \
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && rm -rf /tmp/* /var/cache/apk/*
+#####################################
+# Imagick:
+#####################################
 
-#RUN su - www-data -c "composer global require hirak/prestissimo"
+RUN pecl install imagick && \
+    docker-php-ext-enable imagick
 
-ENV PATH=${PATH}:/home/www-data/.composer/vendor/bin
+#####################################
+# GD:
+#####################################
+
+# Install the PHP gd library
+RUN docker-php-ext-install gd && \
+    docker-php-ext-configure gd --with-freetype --with-jpeg && \
+    docker-php-ext-install gd
+
+#####################################
+# xDebug:
+#####################################
+
+# Install the xdebug extension
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug \
+    && echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+#####################################
+# Composer:
+#####################################
+
+# Install composer and add its bin to the PATH.
+RUN curl -s http://getcomposer.org/installer | php && \
+    echo "export PATH=${PATH}:/var/www/vendor/bin" >> ~/.bashrc && \
+    mv composer.phar /usr/local/bin/composer
+
+# Source the bash
+RUN . ~/.bashrc
+
+RUN rm -r /var/lib/apt/lists/*
+
+RUN usermod -u 1000 www-data
 
 WORKDIR /var/www
 
-
-
-FROM php-base
-
-# Xdebug
-RUN pecl install xdebug && docker-php-ext-enable xdebug
-
-COPY ./php.ini /usr/local/etc/php/conf.d/php.ini
-
-RUN apt-get update -y && \
-    apt-get install -y openssh-client && \
-    mkdir -p /home/www-data/.ssh && \
-    chmod 777 /home/www-data/.ssh
-
-RUN apt-get install -y jpegoptim optipng pngquant
-
-RUN curl -LO https://deployer.org/releases/v6.4.7/deployer.phar && \
-    mv deployer.phar /usr/local/bin/dep && \
-    chmod +x /usr/local/bin/dep
-
-WORKDIR /var/www
-
-USER www-data
+EXPOSE 9000
+CMD ["php-fpm"]

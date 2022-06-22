@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/github/license/btn441/docker-npmc"/>
   <img src="https://img.shields.io/github/repo-size/btn441/docker-npmc"/>
   <img src="https://img.shields.io/badge/docker--compose-v3.7-blueviolet"/>
-  <img src="https://img.shields.io/badge/php--fpm-v7.4--fpm-blueviolet"/>
+  <img src="https://img.shields.io/badge/php--fpm-v8.0--fpm-blueviolet"/>
   <img src="https://img.shields.io/badge/elasticsearch-7.10.1-blueviolet"/>
   <img src="https://img.shields.io/badge/nginx-alpine-blueviolet"/>
   <img src="https://img.shields.io/badge/mariadb-alpine-blueviolet"/>
@@ -25,7 +25,7 @@
 |Image|Tag|Size|
 |:-:|:-:|:-:|
 |[elasticsearch](https://hub.docker.com/_/elasticsearch)|7.10.1|774MB|
-|[rocketfirm911/php-fpm](https://hub.docker.com/r/rocketfirm911/php-fpm)|latest|719MB|
+|[rocketfirm911/php-fpm](https://hub.docker.com/r/rocketfirm911/php-fpm)|latest|717MB|
 |[kartoza/postgis](https://hub.docker.com/r/kartoza/postgis/)|latest|491MB|
 |[yobasystems/alpine-mariadb](https://hub.docker.com/r/yobasystems/alpine-mariadb)|latest|216MB|
 |[nginx](https://hub.docker.com/_/nginx)|alpine|21.6MB|
