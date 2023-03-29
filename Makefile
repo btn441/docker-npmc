@@ -1,4 +1,4 @@
-docker = docker-compose -f ./docker/docker-compose.yml -f ./docker/docker-compose.override.yml 
+docker = docker compose -f ./docker/docker-compose.yml -f ./docker/docker-compose.override.yml 
 
 # Запустить Docker демона
 .PHONY: run
